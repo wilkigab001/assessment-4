@@ -8,6 +8,9 @@ const addInput = document.getElementById('addInput')
 const deleteForm = document.getElementById('deleteColor')
 const deleteInput = document.getElementById('deleteInput')
 
+const superheroesBtn = document.getElementById('superheroesButton')
+const heroList = document.getElementById('heroes')
+
 const getCompliment = () => {
     axios.get("http://localhost:4000/api/compliment/")
         .then(res => {
@@ -62,7 +65,7 @@ const addColor = (event) => {
 
 const deleteColors = (event) => {
     event.preventDefault()
-    axios.delete(`http://localhost:4000/api/deletecolors/${deleteInput.value}`)
+    axios.delete(`http://localhost:4000/api/deletecolor/${deleteInput.value}/`)
     .then(res => {
         const color = res.data
 
@@ -75,6 +78,21 @@ const deleteColors = (event) => {
         deleteInput.value =""
  })
 }
+const getSuperHeroes = () => {
+    axios.get('http;//localhost:4000/api/superheroes/')
+    .then(res => {
+        const hero = res.data
+        console.log(hero)
+
+        for(i = 0; i < hero.length; i++){
+         let newHero = document.createElement('li')
+         newHero.textContent = hero[i]
+         heroList.appendChild(newHero)
+        }
+ })
+}
+
+
 
 
 
@@ -84,3 +102,4 @@ fortuneBtn.addEventListener('click', getFortune)
 colorBtn.addEventListener('click', getColors)
 addForm.addEventListener('click', addColor)
 deleteForm.addEventListener('click', deleteColors)
+superheroesBtn.addEventListener('click', getSuperHeroes)

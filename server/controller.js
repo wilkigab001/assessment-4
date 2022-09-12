@@ -1,6 +1,7 @@
 const fortunes = ['A beautiful, smart, and loving person will be coming into your life.', 'A person of words and not deeds is like a garden full of weeds.', 'An acquaintance of the past will affect you in the near future.', 'Education is the ability to meet lifes situations.', 'Please visit us at wontonfood.com']
 
 const colorsArray = ['red', 'green', 'blue']
+const heros = ['spiderman', 'superman', 'black widow', 'black panther']
 
 module.exports = {
     
@@ -20,12 +21,6 @@ module.exports = {
 
     getColors: (req, res) => {
         res.status(200).send(colorsArray)
-        for(i = 0; i < colorsArray.length; i++){
-            let data = colorsArray[i]
-            let style = document.createElement('li')
-            style.innerHTML = data
-            colors.appendChild(style)
-        }
     },
 
     addColor: (req,res) => {
@@ -35,10 +30,15 @@ module.exports = {
     },
 
     deleteColors: (req,res) => {
-        let index = colorsArray.findIndex(elem => elem.id === req.params.id)
+        console.log(req.params.value)
+        let index = req.params.value
         colorsArray.splice(index, 1)
 
         res.status(200).send(colorsArray)
+    },
+
+    getSuperHeroes: (req, res) => {
+        res.status(200).send(heros)
     }
     
 
